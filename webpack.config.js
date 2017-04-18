@@ -60,8 +60,7 @@ if (process.env.NODE_ENV.trim() === 'production') {
     module.exports.devtool = 'source-map';
     module.exports.devServer = {
         port: 8080,
-        contentBase: './public',
-        hot: true,
+        contentBase: './',
         historyApiFallback: true,
         publicPath: "",
         stats: {

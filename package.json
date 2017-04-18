@@ -33,7 +33,7 @@
     "webpack-dev-server": "^2.4.2"
   },
   "scripts": {
-    "watch": "webpack-dev-server --port 8080 --colors",
+    "watch": "set NODE_ENV=dev && webpack-dev-server --port 8080 --colors",
     "dev": "set NODE_ENV=dev && webpack-dev-server --hot --inline --progress --colors",
     "deploy": "rd/s/q public && set NODE_ENV=production && webpack --profile --colors"
   }
