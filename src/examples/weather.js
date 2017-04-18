@@ -67,7 +67,7 @@ const store = createStore(
 const SelectCity = ({ fetchWeather, getCity, city, fetchData }) => {
 	let input;
 	return (
-		<div className="row">
+		<div className="row col-sm-12">
 			<form className="input-group" onSubmit={e => {e.preventDefault();return fetchWeather(input.value)}}>
 				<input type="text" value={city} className="form-control" placeholder="输入城市" ref={node => {input = node}} onChange={e => getCity(e.target.value)}/>
 				<span className="input-group-btn">
@@ -86,7 +86,7 @@ const WeatherItem = ({ date, weather, wind, temp }) => (
 	</div>
 )
 const WeatherInfo = ({ city, pm25, date, weather }) => (
-	<div className="row" style={{marginTop: "20px"}}>
+	<div className="row col-sm-12" style={{marginTop: "20px"}}>
 		<div className="jumbotron">
 			<h1>{city}</h1>
 			<ul className="list-inline">
