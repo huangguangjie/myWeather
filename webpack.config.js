@@ -1,11 +1,13 @@
 var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
 	entry: {
 		index: ['./src/index.js'],
 		vendor: [
 			'react',
-			'react-dom'
+			'react-dom',
+			'redux'
 		]
 	},
 	output: {
@@ -29,19 +31,8 @@ module.exports = {
 		},
 		{test: /\.css$/, loader: 'style-loader!css-loader'},
 		{test: /\.less$/, loader: 'style-loader!css-loader!less-loader'},
-		{test:/\.(png|jpg|ttf|woff|eot|woff2|svg)$/, loader: 'url-loader?limit=8192'},
-		{test: /\.js$/, loader: 'jshint-loader', include: __dirname + '/src'}
+		{test:/\.(png|jpg|ttf|woff|eot|woff2|svg)$/, loader: 'url-loader?limit=8192'}
 		]
-	},
-	devServer: {
-		hot: true,
-		inline: true,
-		proxy: {
-			'/api/*': {
-				target: 'http://localhost:8080',
-				secure: false
-			}
-		}
 	},
 	resolve: {
 		extensions: [' ','.js','.jsx','.es6']
@@ -49,4 +40,32 @@ module.exports = {
 	plugins: [
 		new webpack.optimize.CommonsChunkPlugin({name:"vendor",filename: "vendor.bundle.js"})
 	]
+};
+// 判断开发环境还是生产环境,添加uglify等插件
+if (process.env.NODE_ENV.trim() === 'production') {
+    module.exports.plugins = (module.exports.plugins || [])
+        .concat([
+            new webpack.DefinePlugin({
+			   'process.env': {
+			       NODE_ENV: '"production"'
+			   }
+			}),
+            new webpack.optimize.UglifyJsPlugin({
+                compress: {
+                    warnings: false
+                }
+            })
+        ]);
+} else {
+    module.exports.devtool = 'source-map';
+    module.exports.devServer = {
+        port: 8080,
+        contentBase: './public',
+        hot: true,
+        historyApiFallback: true,
+        publicPath: "",
+        stats: {
+            colors: true
+        }
+    };
 }

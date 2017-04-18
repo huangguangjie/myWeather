@@ -68,12 +68,12 @@ const SelectCity = ({ fetchWeather, getCity, city, fetchData }) => {
 	let input;
 	return (
 		<div className="row">
-			<div className="input-group">
+			<form className="input-group">
 				<input type="text" value={city} className="form-control" placeholder="输入城市" ref={node => {input = node}} onChange={e => getCity(e.target.value)}/>
 				<span className="input-group-btn">
-					<button className="btn btn-default" type="button" onClick={() => fetchWeather(input.value)}>{fetchData ? "查询中..." : "查询"}</button>
+					<button className="btn btn-default" type="submit" onClick={() => fetchWeather(input.value)}>{fetchData ? "查询中..." : "查询"}</button>
 				</span>
-			</div>
+			</form>
 		</div>
 	)
 }

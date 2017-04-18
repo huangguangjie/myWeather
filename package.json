@@ -34,7 +34,7 @@
   },
   "scripts": {
     "watch": "webpack-dev-server --port 8080 --colors",
-    "dev": "webpack-dev-server --hot --inline --progress --colors",
-    "deploy": "rd/s/q public && webpack --progress --profile --colors --config webpack.production.config.js"
+    "dev": "set NODE_ENV=dev && webpack-dev-server --hot --inline --progress --colors",
+    "deploy": "rd/s/q public && set NODE_ENV=production && webpack --profile --colors"
   }
 }
