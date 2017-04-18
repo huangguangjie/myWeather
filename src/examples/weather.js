@@ -9,6 +9,7 @@ import fetchJsonp from 'fetch-jsonp';
 // import fetch from 'isomorphic-fetch';
 // import fetch from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
+import './weather.css';
 
 // Actions
 const GET_CITY = 'GET_CITY';
@@ -78,7 +79,7 @@ const SelectCity = ({ fetchWeather, getCity, city, fetchData }) => {
 	)
 }
 const WeatherItem = ({ date, weather, wind, temp }) => (
-	<div className="col-md-3">
+	<div className="col-md-3 weather-item">
 		<p>{date}</p>
 		<p>{weather}</p>
 		<p>{wind}</p>
@@ -88,11 +89,9 @@ const WeatherItem = ({ date, weather, wind, temp }) => (
 const WeatherInfo = ({ city, pm25, date, weather }) => (
 	<div className="row col-sm-12" style={{marginTop: "20px"}}>
 		<div className="jumbotron">
-			<h1>{city}</h1>
-			<ul className="list-inline">
-				<li>pm2.5: {pm25}</li>
-				<li>日期：{date}</li>
-			</ul>
+			<div className="title">
+				<h1>{city}<span>pm2.5: {pm25}</span><span>日期：{date}</span></h1>
+			</div>
 			<div className="row">
 				{weather instanceof Array && weather.map((item,i) => {
 					return <WeatherItem {...item} key={i} />
