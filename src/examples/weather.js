@@ -51,12 +51,16 @@ const weatherData = (state = Map({data: {}}), action) => {
 
 
 // store
-const store = createStore(
+/*const store = createStore(
 	combineReducers({city,fetchData,weatherData}),
 	compose(
 		applyMiddleware(thunkMiddleware),
 		window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 	)
+);*/
+const store = createStore(
+	combineReducers({city,fetchData,weatherData}),
+	applyMiddleware(thunkMiddleware)
 );
 
 // components

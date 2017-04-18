@@ -33,20 +33,11 @@ module.exports = {
 		{test: /\.js$/, loader: 'jshint-loader', include: __dirname + '/src'}
 		]
 	},
-	devServer: {
-		hot: true,
-		inline: true,
-		proxy: {
-			'/api/*': {
-				target: 'http://localhost:8080',
-				secure: false
-			}
-		}
-	},
 	resolve: {
 		extensions: [' ','.js','.jsx','.es6']
 	},
 	plugins: [
-		new webpack.optimize.CommonsChunkPlugin({name:"vendor",filename: "vendor.bundle.js"})
+		new webpack.optimize.CommonsChunkPlugin({name:"vendor",filename: "vendor.bundle.js"}),
+		new webpack.optimize.UglifyJsPlugin({minimize: true})
 	]
 }

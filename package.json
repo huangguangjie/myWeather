@@ -19,6 +19,7 @@
     "file-loader": "^0.11.1",
     "immutable": "^3.8.1",
     "isomorphic-fetch": "^2.2.1",
+    "jshint-loader": "^0.8.4",
     "less-loader": "^4.0.3",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
@@ -32,6 +33,8 @@
     "webpack-dev-server": "^2.4.2"
   },
   "scripts": {
-    "watch": "webpack-dev-server --port 8080 --colors"
+    "watch": "webpack-dev-server --port 8080 --colors",
+    "dev": "webpack-dev-server --hot --inline --progress --colors",
+    "deploy": "rd/s/q public && webpack --progress --profile --colors --config webpack.production.config.js"
   }
 }
