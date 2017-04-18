@@ -14,6 +14,9 @@
 	border-left: 2px solid #fff;
 	text-align: center;
 }
+.weather-item:first-child {
+	border-left: none;
+}
 @media all and (max-width:1200px) {
 	.title {
 		border-bottom: none;
