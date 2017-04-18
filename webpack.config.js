@@ -29,8 +29,19 @@ module.exports = {
 		},
 		{test: /\.css$/, loader: 'style-loader!css-loader'},
 		{test: /\.less$/, loader: 'style-loader!css-loader!less-loader'},
-		{test:/\.(png|jpg|ttf|woff|eot|woff2|svg)$/, loader: 'url-loader?limit=8192'}
+		{test:/\.(png|jpg|ttf|woff|eot|woff2|svg)$/, loader: 'url-loader?limit=8192'},
+		{test: /\.js$/, loader: 'jshint-loader', include: __dirname + '/src'}
 		]
+	},
+	devServer: {
+		hot: true,
+		inline: true,
+		proxy: {
+			'/api/*': {
+				target: 'http://localhost:8080',
+				secure: false
+			}
+		}
 	},
 	resolve: {
 		extensions: [' ','.js','.jsx','.es6']
